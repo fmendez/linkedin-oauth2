@@ -44,7 +44,9 @@ module LinkedIn
       end
 
       def shares(options={})
-        path = "#{person_path(options)}/network/updates?type=SHAR&scope=self"
+        options[:type] ||= 'SHAR'
+        options[:scope] ||= 'self'
+        path = "#{person_path(options)}/network/updates"
         simple_query(path, options)
       end
 
